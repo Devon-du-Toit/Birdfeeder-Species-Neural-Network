@@ -1,2 +1,4 @@
-"*.keras" 
-"*.h5" 
+*.keras 
+*.h5 
+.ipynb_checkpoints/ 
+dataset/ 

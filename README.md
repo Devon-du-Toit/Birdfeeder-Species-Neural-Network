@@ -17,3 +17,25 @@ Supplementary notebooks at the repository root support deployment workflows:
 ## Usage
 
 Each training notebook expects a dataset organized with one subfolder per class and uses Keras utilities to load, augment, and batch the images. Execute the notebooks in order to train progressively more capable models or adapt them for your own species list.
+
+## Training workflow
+
+A typical training notebook follows a consistent pattern. For example, the five-species trainer loads images from a directory, splits them into training and validation sets, and records the class labels—including bird species and squirrels—before model training begins.
+
+Data augmentation and normalization steps are defined with Keras’ preprocessing layers to improve model robustness.
+
+Model architectures are straightforward convolutional networks built with a stack of `Conv2D` and pooling layers followed by dense layers for classification.
+
+## Inference and deployment
+
+The `model_impl.ipynb` notebook demonstrates how to load a trained model, preprocess an input image (padding or resizing to 256×256), and run prediction to display the most probable class and confidence score.
+
+For edge deployment, `model_LITE_converter.ipynb` shows how to convert a saved TensorFlow model into a TensorFlow Lite file using the `TFLiteConverter`, enabling optimizations and avoiding legacy TF1 conversion paths.
+
+## Making use of this repository
+
+1. **Understand the dataset layout**: The notebooks expect an image directory structured by class names (e.g., `../dataset/Cape Sparrow/`). Ensure your dataset matches this layout before training.
+2. **Run through a training notebook**: Start with `5-Species-Identifier/trainer_5_species.ipynb` to see the full workflow—loading data, augmenting images, defining the CNN, and training.
+3. **Experiment with model architecture**: Try changing layer counts or hyperparameters in the sequential model to improve accuracy or reduce size.
+4. **Practice deployment**: Use `model_impl.ipynb` to test inference on new images, then follow `model_LITE_converter.ipynb` to create a `.tflite` model for mobile or embedded devices.
+5. **Extend to more species or tasks**: Once comfortable, adapt the notebooks to new species or create additional binary classifiers for other animals.
